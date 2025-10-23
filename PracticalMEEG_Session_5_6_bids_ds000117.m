@@ -31,22 +31,71 @@ clear;
 clear globals;
 
 % Comment one of the two lines below to process EEG or MEG data
-chantype = { 'megmag' }; % process MEG megmag channels
+%chantype = { 'megmag' }; % process MEG megmag channels
 %chantype = { 'megplanar' }; % process MEG megplanar channels
-%chantype = { 'eeg' }; % process EEG
+chantype = { 'eeg' }; % process EEG
 
 % Paths below must be updated to the files on your enviroment.
-RootFolder = fileparts(pwd); % Getting root folder
-path2data = fullfile(RootFolder,'Data', 'ds000117_run1'); % Path to data 
-path2save = fullfile(RootFolder,'Data', 'ds000117_run1', 'derivative', 'eeglab'); % Path to data 
+path2data = fullfile(pwd,'ds000117_pruned', 'derivatives', 'meg_derivatives'); % Path to data 
+path2save = fullfile(pwd,'ds000117_pruned', 'derivatives', 'eeglab'); 
 [ALLEEG, EEG, CURRENTSET] = eeglab; % start EEGLAB
 
 %% IMPORTING THE DATA
-[STUDY, ALLEEG] = pop_importbids(path2data, 'bidsevent', 'on', 'bidsevent', 'on', 'bidschanloc', 'off', 'eventtype', 'stim_type', 'outputdir', path2save, 'subjects', [1:3], 'runs', 1);
+[STUDY, ALLEEG] = pop_importbids(path2data, 'bidsevent', 'on', 'bidsevent', 'on', 'mergeruns', 'on', 'bidschanloc', 'off', 'eventtype', 'stim_type', 'outputdir', path2save, 'subjects', [1 2], 'runs', {'01' '02'});
 CURRENTSET = 1:length(ALLEEG); EEG = ALLEEG; CURRENTSTUDY = 1;
 eeglab redraw
 
+% Step 2: Adding fiducials and rotating montage. Note:The channel location from this points were extracted from the sub-01_ses-meg_coordsystem.json
+% files (see below) and written down here. The reason is that File-IO does not import these coordinates.
+n = length(EEG(1).chanlocs)+1;
+EEG=pop_chanedit(EEG, 'changefield',{n+0,'labels','LPA'},'changefield',{n+0,'X','0'},  'changefield',{n+0,'Y','7.1'},'changefield',{n+0,'Z','0'},...
+                      'changefield',{n+1,'labels','RPA'},'changefield',{n+1,'X','0'}, 'changefield',{n+1,'Y','-7.756'},'changefield',{n+1,'Z','0'},...
+                      'changefield',{n+2,'labels','Nz'} ,'changefield',{n+2,'Y','0'},'changefield',{n+2,'X','10.636'},'changefield',{n+2,'Z','0'});
+EEG = eeg_checkset(EEG);
+
+% Changing Channel types and removing channel locations for channels 61-64 (Raw data types are incorrect)
+EEG = pop_chanedit(EEG,'changefield',{367  'type' 'HEOG'  'X'  []  'Y'  []  'Z'  []  'theta'  []  'radius'  []  'sph_theta'  []  'sph_phi'  []  'sph_radius'  []});
+EEG = pop_chanedit(EEG,'changefield',{368  'type' 'VEOG'  'X'  []  'Y'  []  'Z'  []  'theta'  []  'radius'  []  'sph_theta'  []  'sph_phi'  []  'sph_radius'  []});
+EEG = pop_chanedit(EEG,'changefield',{369  'type' 'EKG'   'X'  []  'Y'  []  'Z'  []  'theta'  []  'radius'  []  'sph_theta'  []  'sph_phi'  []  'sph_radius'  []});
+EEG = pop_chanedit(EEG,'changefield',{370  'type' 'EKG'   'X'  []  'Y'  []  'Z'  []  'theta'  []  'radius'  []  'sph_theta'  []  'sph_phi'  []  'sph_radius'  []});
+
+% Step 3: Re-import events from STI101 channel (the original ones are incorect)
+edgelenval = 1;
+EEG = pop_chanevent(EEG, 381,'edge','leading','edgelen',edgelenval,'delevent','on','delchan','off','oper','double(bitand(int32(X),31))'); % first 5 bits
+
+% Step 4: Selecting EEG or MEG data 
+EEG = pop_select(EEG, 'chantype', chantype);
+for iEEG = 1:length(EEG)
+    EEG(iEEG).chaninfo = rmfield(EEG(iEEG).chaninfo, 'topoplot');
+    EEG(iEEG).chaninfo = rmfield(EEG(iEEG).chaninfo, 'originalnosedir');
+end
+
+% Step 5: Recomputing head center (for display only) Optional
+EEG = pop_chanedit(EEG, 'eval','chans = pop_chancenter( chans, [],[])');
+
+% Step 6: Cleaning artefactual events (keep only valid event codes) (
+% NOT BE NECCESARY FOR US
+EEG = pop_selectevent( EEG, 'type',[5 6 7 13 14 15 17 18 19] ,'deleteevents','on');
+
+% rename events
+EEG = pop_selectevent( EEG, 'type',256, 'renametype', 'left_nonsym','deleteevents','off');  % Event type : 'left_nonsym'
+EEG = pop_selectevent( EEG, 'type',4096,'renametype', 'right_sym','deleteevents','off');    % Event type : 'right_sym'
+
+% Step 9: Rename face presentation events (information provided by authors)
+EEG = pop_selectevent( EEG, 'type',5,'renametype','Famous','deleteevents','off');           % famous_new
+EEG = pop_selectevent( EEG, 'type',6,'renametype','Famous','deleteevents','off');           % famous_second_early
+EEG = pop_selectevent( EEG, 'type',7,'renametype','Famous','deleteevents','off');           % famous_second_late
+
+EEG = pop_selectevent( EEG, 'type',13,'renametype','Unfamiliar','deleteevents','off');      % unfamiliar_new
+EEG = pop_selectevent( EEG, 'type',14,'renametype','Unfamiliar','deleteevents','off');      % unfamiliar_second_early
+EEG = pop_selectevent( EEG, 'type',15,'renametype','Unfamiliar','deleteevents','off');      % unfamiliar_second_late
+
+EEG = pop_selectevent( EEG, 'type',17,'renametype','Scrambled','deleteevents','off');       % scrambled_new
+EEG = pop_selectevent( EEG, 'type',18,'renametype','Scrambled','deleteevents','off');       % scrambled_second_early
+EEG = pop_selectevent( EEG, 'type',19,'renametype','Scrambled','deleteevents','off');       % scrambled_second_late
+
 % Preprocess data
+if length(EEG) == 1, EEG = eeg_checkset(EEG, 'loaddata'); end
 EEG = pop_select(EEG, 'chantype', chantype);
 EEG = pop_resample(EEG, 100);
 EEG = pop_eegfiltnew(EEG, 1, 0);   % High pass at 1Hz
@@ -78,9 +127,9 @@ EEG = pop_clean_rawdata( EEG, 'Highpass', 'off',...
 
 %% run ICA
 if exist('picard') % faster
-    EEG = pop_runica( EEG , 'picard', 'maxiter', 500, 'pca', -1);
+    EEG = pop_runica( EEG , 'picard', 'maxiter', 500, 'pca', -1, 'concatcond', 'on');
 else
-    EEG = pop_runica( EEG , 'runica', 'extended',1, 'pca', -1);
+    EEG = pop_runica( EEG , 'runica', 'extended',1, 'pca', -1, 'concatcond', 'on');
 end
 
 %% automatically classify Independent Components using IC Label

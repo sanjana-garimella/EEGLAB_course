@@ -30,8 +30,7 @@ clear globals;
 chantype = { 'eeg' }; % process EEG
 
 % Paths below must be updated to the files on your enviroment.
-RootFolder = fileparts(pwd); % Getting root folder
-path2data = fullfile(RootFolder,'Data', 'sub-01'); % Path to data 
+path2data = fullfile(pwd,'ds000117_pruned', 'derivatives', 'meg_derivatives', 'sub-01', 'ses-meg/', 'meg/'); % Path to data 
 filename = 'sub-01_ses-meg_task-facerecognition_run-01_proc-sss_meg.fif';
 
 [ALLEEG, EEG, CURRENTSET] = eeglab; % start EEGLAB

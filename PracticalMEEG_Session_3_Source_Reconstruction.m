@@ -27,8 +27,7 @@ clear;
 clear globals;
 
 % Path to data below. Using relative paths so no need to update.
-RootFolder = fileparts(pwd); % Getting root folder
-path2data = fullfile(RootFolder,'Data', 'sub-01'); % Path to data 
+path2data = fullfile(pwd,'ds000117_pruned', 'derivatives', 'meg_derivatives', 'sub-01', 'ses-meg/', 'meg/'); % Path to data 
 filename = 'wh_S01_run_01_preprocessing_data_session_1_out.set';
 
 % Start EEGLAB
@@ -75,7 +74,7 @@ pop_dipplot( EEG, Brain_comps ,'mri',fullfile(dipfitpath,'/standard_BEM/standard
 EEG.icaweights(choosenIC,:) = -EEG.icaweights(choosenIC,:);
 EEG.icawinv(:,choosenIC) = -EEG.icawinv(:,choosenIC);
 EEG.icaact(choosenIC,:) = -EEG.icaact(choosenIC,:);
-pop_erpimage(EEG,0, choosenIC,[[]],['Comp. ' int2str(choosenIC) ],10,1,{},[],'' ,'yerplabel','','erp','on','cbar','on','topo', { mean(EEG.icawinv(:,[choosenIC]),2) EEG.chanlocs EEG.chaninfo } );
+figure; pop_erpimage(EEG,0, choosenIC,[[]],['Comp. ' int2str(choosenIC) ],10,1,{},[],'' ,'yerplabel','','erp','on','cbar','on','topo', { mean(EEG.icawinv(:,[choosenIC]),2) EEG.chanlocs EEG.chaninfo } );
 
 %% Saving data
 EEG = pop_saveset( EEG,'filename', 'wh_S01_run_01_Source_Reconstruction_Session_4_out.set','filepath', path2data);

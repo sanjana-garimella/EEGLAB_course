@@ -26,8 +26,7 @@ clear;
 clear globals;
 
 % Path to data below. Using relative paths so no need to update.
-RootFolder = fileparts(pwd); % Getting root folder
-path2data = fullfile(RootFolder,'Data', 'sub-01'); % Path to data 
+path2data = fullfile(pwd,'ds000117_pruned', 'derivatives', 'meg_derivatives', 'sub-01', 'ses-meg/', 'meg/'); % Path to data 
 filename = 'wh_S01_run_01.set';
 
 % Start EEGLAB
