@@ -46,10 +46,8 @@ The scripts expect the following folder structure:
 
 ```
 parent_folder/
-├── Data/
-│   ├── sub-01/                    (processed files for Session 4)
+EEGLAB_course/
 │   └── ds002718_5_Subjects/       (preprocessed group data for Session 6)
-└── EEGLAB_course/
     ├── ds000117_pruned/           (raw data for Sessions 1, 2, 3, 5)
     │   └── derivatives/
     │       └── meg_derivatives/
