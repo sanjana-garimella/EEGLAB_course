@@ -32,8 +32,7 @@ clear;
 clear globals;
 
 % Paths to data. Using relative paths so no need to update.
-RootFolder = fileparts(pwd); % Getting root folder
-path2data = fullfile(RootFolder,'Data', 'ds002718_5_Subjects') % Path to precomputed files from ds002718
+path2data = fullfile(pwd, 'ds002718_5_Subjects') % Path to precomputed files from ds002718
 
 % Start EEGLAB
 [ALLEEG, EEG, CURRENTSET] = eeglab; 
