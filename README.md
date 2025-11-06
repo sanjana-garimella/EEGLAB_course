@@ -18,7 +18,6 @@ Lecture slides for the course are available in two formats:
 - IC clustering
 - LIMO statistics
 - MVPA (Multivariate Pattern Analysis)
-- Deep learning applications
 
 **PowerPoint format:** Editable PowerPoint versions of the slides are available at:
 [Google Drive - Course Slides](https://drive.google.com/drive/folders/17EqHqypmM0aIQVuoaDMLbfSnMh8zB_GG?usp=drive_link)
@@ -36,29 +35,37 @@ This course uses data from the multimodal face recognition BIDS dataset, a prune
 **Download the pruned single-subject dataset (ds000117_pruned):**
 [https://zenodo.org/record/7410278](https://zenodo.org/record/7410278)
 
-This dataset contains only one subject.
+This dataset contains only one subject and is used in Sessions 1, 2, 3, and 5.
 
-**For group-level analyses, also download the preprocessed group dataset (ds002718):**
+**For group-level analyses (Sessions 4 and 6), also download the preprocessed group dataset (ds002718):**
 [https://zenodo.org/records/5528500](https://zenodo.org/records/5528500)
 
-Once downloaded, place both datasets (`ds000117_pruned` and `ds002718`) in a `Data` folder at the parent level of where you'll place your EEGLAB scripts.
+### Folder Structure Setup
 
-Your folder structure should look like this:
+The scripts expect the following folder structure:
 
 ```
 parent_folder/
 ├── Data/
-│   ├── sub-01/          (from ds000117_pruned)
-│   └── ds002718/        (preprocessed group data)
-└── EEGLAB_course/       (this repository with scripts)
+│   ├── sub-01/                    (processed files for Session 4)
+│   └── ds002718_5_Subjects/       (preprocessed group data for Session 6)
+└── EEGLAB_course/
+    ├── ds000117_pruned/           (raw data for Sessions 1, 2, 3, 5)
+    │   └── derivatives/
+    │       └── meg_derivatives/
+    │           └── sub-01/
+    │               └── ses-meg/
+    │                   └── meg/
+    └── (script files: Session_1_Import_Data.m, etc.)
 ```
 
-The scripts using the single subject data assume the datafiles are located in the folder `Data/sub-01` located in the parent folder of this repository. See below the code used in the scripts to locate the file:
+**Setup instructions:**
+1. Place the `ds000117_pruned` folder **inside** the `EEGLAB_course` folder (used by Sessions 1, 2, 3, 5)
+2. Create a `Data` folder in the **parent** folder of `EEGLAB_course` and extract:
+   - Processed single-subject files to `Data/sub-01/` (for Session 4)
+   - Group dataset to `Data/ds002718_5_Subjects/` (for Session 6)
 
-```matlab
-RootFolder = fileparts(pwd); % Getting root folder
-path2data = fullfile(RootFolder,'Data', 'sub-01'); % Path to data
-```
+**Note:** Sessions 1-3 generate processed files. Session 4 expects to find these in the parent `Data/sub-01/` folder, so you may need to copy output files from earlier sessions there.
 
 ### Step 3 – Download EEGLAB
 
@@ -92,6 +99,8 @@ Clone this repository:
 ```bash
 git clone https://github.com/sccn/EEGLAB_course.git
 ```
+
+Or download the ZIP on GitHub.
 
 ## Course Content Overview
 
@@ -157,6 +166,39 @@ For this presentation, we will the script [Session_3_Source_Reconstruction.m](Se
 * Definition of head model and source model
 * Localization of ICA components
 * Plotting of ICA components overlaid on 3-D template MRI
+
+### Session 4: ERP source analysis
+
+The script [Session_4_ERP_Source_Analysis_TOEDIT.m](Session_4_ERP_Source_Analysis_TOEDIT.m) analyzes ERP component contributions and source-level analysis.
+
+* Load preprocessed data from Session 1
+* Extract epochs for Famous, Unfamiliar, and Scrambled face conditions
+* Perform baseline correction (-1000 to 0 ms)
+* Apply threshold-based epoch rejection
+* Plot ERP scalp distributions for each condition
+* Analyze ICA component contributions to ERPs using scalp envelope plots
+* Demonstrate removal of artifact components
+* Visualize component projections to ERPs
+
+### Session 5: BIDS import and preprocessing workflows
+
+This session demonstrates how to work with BIDS-formatted datasets using two scripts:
+
+**Single-subject BIDS import** - [Session_5_6_bids_ds000117.m](Session_5_6_bids_ds000117.m):
+* Import data using EEGLAB BIDS tools from ds000117_pruned
+* Add fiducial coordinates and rotate montage
+* Re-import events from STI101 channel
+* Select EEG or MEG data type
+* Clean artifactual events
+* Merge multiple runs for each subject
+
+**Group-level BIDS import** - [Session_5_6_bids_ds002718.m](Session_5_6_bids_ds002718.m):
+* Import multiple subjects from ds002718 BIDS dataset
+* Remove unwanted channels
+* Apply common average reference
+* Resample data to 100 Hz
+* Apply high-pass (1 Hz) and low-pass (40 Hz) filters
+* Prepare data for group-level analysis
 
 ### Session 6: Group-level analysis
 
