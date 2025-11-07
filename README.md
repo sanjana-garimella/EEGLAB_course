@@ -45,27 +45,35 @@ This dataset contains only one subject and is used in Sessions 1, 2, 3, and 5.
 The scripts expect the following folder structure:
 
 ```
-parent_folder/
-├── Data/
-│   └── sub-01/                    (processed files for Session 4)
-└── EEGLAB_course/
-    ├── ds002718_5_Subjects/       (preprocessed group data for Session 6)
-    ├── ds000117_pruned/           (raw data for Sessions 1, 2, 3, 5)
-    │   └── derivatives/
-    │       └── meg_derivatives/
-    │           └── sub-01/
-    │               └── ses-meg/
-    │                   └── meg/
-    └── (script files: Session_1_Import_Data.m, etc.)
+EEGLAB_course/
+├── ds002718_5_Subjects/       (preprocessed group data for Session 6)
+├── ds000117_pruned/           (raw data for Sessions 1, 2, 3, 4, 5)
+│   └── derivatives/
+│       └── meg_derivatives/
+│           └── sub-01/
+│               └── ses-meg/
+│                   └── meg/   (processed .set files saved here)
+├── Session_1_Import_Data.m
+├── Session_1_Preprocess_Data.m
+├── Session_2_ERP_Analysis.m
+├── Session_2_Time_Frequency_Analysis.m
+├── Session_3_Source_Reconstruction.m
+├── Session_4_ERP_Source_Analysis_TOEDIT.m
+└── ... (other scripts)
 ```
 
 **Setup instructions:**
-1. Place the `ds000117_pruned` folder **inside** the `EEGLAB_course` folder (used by Sessions 1, 2, 3, 5)
-2. Place the `ds002718_5_Subjects` folder **inside** the `EEGLAB_course` folder (used by Session 6)
-3. Create a `Data` folder in the **parent** folder of `EEGLAB_course` and extract:
-   - Processed single-subject files to `Data/sub-01/` (for Session 4)
+1. Clone or download this repository to create the `EEGLAB_course` folder
+2. Download and extract the `ds000117_pruned` folder **inside** the `EEGLAB_course` folder
+3. Download and extract the `ds002718_5_Subjects` folder **inside** the `EEGLAB_course` folder
 
-**Note:** Sessions 1-3 generate processed files. Session 4 expects to find these in the parent `Data/sub-01/` folder, so you may need to copy output files from earlier sessions there.
+**Data flow:**
+- **Session 1**: Imports raw data and preprocesses it, saves to `ds000117_pruned/derivatives/meg_derivatives/sub-01/ses-meg/meg/`
+- **Session 2**: Loads Session 1 output, creates epochs for each condition, saves epoched datasets to the same location
+- **Session 3**: Loads Session 1 output and performs source reconstruction
+- **Session 4**: Loads Session 2 epoched datasets and performs advanced ERP visualization and analysis
+- **Session 5**: Works with BIDS-formatted datasets for multi-subject import
+- **Session 6**: Performs group-level analysis using `ds002718_5_Subjects`
 
 ### Step 3 – Download EEGLAB
 
@@ -169,16 +177,16 @@ For this presentation, we will the script [Session_3_Source_Reconstruction.m](Se
 
 ### Session 4: ERP source analysis
 
-The script [Session_4_ERP_Source_Analysis_TOEDIT.m](Session_4_ERP_Source_Analysis_TOEDIT.m) analyzes ERP component contributions and source-level analysis.
+The script [Session_4_ERP_Source_Analysis_TOEDIT.m](Session_4_ERP_Source_Analysis_TOEDIT.m) performs advanced ERP visualization and component analysis using the epoched data from Session 2.
 
-* Load preprocessed data from Session 1
-* Extract epochs for Famous, Unfamiliar, and Scrambled face conditions
-* Perform baseline correction (-1000 to 0 ms)
-* Apply threshold-based epoch rejection
+* Load epoched datasets (Famous, Unfamiliar, Scrambled) from Session 2
 * Plot ERP scalp distributions for each condition
-* Analyze ICA component contributions to ERPs using scalp envelope plots
-* Demonstrate removal of artifact components
-* Visualize component projections to ERPs
+* Analyze ICA component contributions to ERPs using scalp envelope plots (pop_envtopo)
+* Visualize component projections and removal of artifact components
+* Plot topographic maps at different latencies
+* Display ERPs in topographic array format
+* Create condition comparison plots (Famous vs. Scrambled, etc.)
+* Generate ERP plots with standard deviation bands
 
 ### Session 5: BIDS import and preprocessing workflows
 
