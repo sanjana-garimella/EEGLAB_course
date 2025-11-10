@@ -1,29 +1,9 @@
-% Wakeman & Henson Data analysis: Extract EEG data and import events and channel location
-
-% Authors: Ramon Martinez-Cancino, Brain Products, 2022
-%          Arnaud Delorme, SCCN, 2022-2025
-%          Johanna Wagner, Zander Labs, 2022
-%          Romain Grandchamp, LPNC, 2025 
+% Wakeman & Henson Data analysis: Import raw data, rename events and channels, adjust latencies.
 %
-% Copyright (C) 2022  Ramon Martinez-Cancino 
-%
-% This program is free software; you can redistribute it and/or modify
-% it under the terms of the GNU General Public License as published by
-% the Free Software Foundation; either version 2 of the License, or
-% (at your option) any later version.
-%
-% This program is distributed in the hope that it will be useful,
-% but WITHOUT ANY WARRANTY; without even the implied warranty of
-% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-% GNU General Public License for more details.
-%
-% You should have received a copy of the GNU General Public License
-% along with this program; if not, write to the Free Software
-% Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+% Authors: Arnaud Delorme, Ramon Martinez-Cancino, Johanna Wagner, Romain Grandchamp
 
 % script folder, this must be updated to the files on your enviroment.
 clear;                                      % clearing all is recommended to avoid variable not being erased between calls 
-clear globals;
 
 % Comment one of the two lines below to process EEG or MEG data
 %chantype = { 'megmag' }; % process MEG megmag channels

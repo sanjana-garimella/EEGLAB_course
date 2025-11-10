@@ -37,8 +37,9 @@ This course uses data from the multimodal face recognition BIDS dataset, a prune
 
 This dataset contains only one subject and is used in Sessions 1, 2, 3, and 5.
 
-**For group-level analyses (Sessions 4 and 6), also download the preprocessed group dataset (ds002718):**
-[https://zenodo.org/records/5528500](https://zenodo.org/records/5528500)
+**For group-level analyses, also download the BIDS dataset (ds002718):**
+[https://nemar.org/dataexplorer/detail?dataset_id=ds002718](https://nemar.org/dataexplorer/detail?dataset_id=ds002718)
+(download the ZIP file on that page)
 
 ### Folder Structure Setup
 
@@ -46,8 +47,10 @@ The scripts expect the following folder structure:
 
 ```
 EEGLAB_course/
-├── ds002718_5_Subjects/       (preprocessed group data for Session 6)
-├── ds000117_pruned/           (raw data for Sessions 1, 2, 3, 4, 5)
+├── eeglab/                    (eeglab distribution with plugins installed)
+├── ds002718/                  (raw BIDS data)
+│   └── derivatives/           (processed data will be saved here)
+├── ds000117_pruned/           (raw data for Sessions 1 of subject 1, not a valid BIDS dataset)
 │   └── derivatives/
 │       └── meg_derivatives/
 │           └── sub-01/
@@ -65,10 +68,11 @@ EEGLAB_course/
 **Setup instructions:**
 1. Clone or download this repository to create the `EEGLAB_course` folder
 2. Download and extract the `ds000117_pruned` folder **inside** the `EEGLAB_course` folder
-3. Download and extract the `ds002718_5_Subjects` folder **inside** the `EEGLAB_course` folder
+3. Download and extract the `ds002718` folder **inside** the `EEGLAB_course` folder
 
 **Data flow:**
 - **Session 1**: Imports raw data and preprocesses it, saves to `ds000117_pruned/derivatives/meg_derivatives/sub-01/ses-meg/meg/`
+    - Hands on 
 - **Session 2**: Loads Session 1 output, creates epochs for each condition, saves epoched datasets to the same location
 - **Session 3**: Loads Session 1 output and performs source reconstruction
 - **Session 4**: Loads Session 2 epoched datasets and performs advanced ERP visualization and analysis
@@ -108,7 +112,7 @@ Clone this repository:
 git clone https://github.com/sccn/EEGLAB_course.git
 ```
 
-Or download the ZIP on GitHub.
+Or download the ZIP on GitHub. Then run all the scripts one of by one starting with the first script.
 
 ## Course Content Overview
 
@@ -219,8 +223,8 @@ The script [Session_6_Group_Analysis_STUDY.m](Session_6_Group_Analysis_STUDY.m) 
 
 Give the lecture for the course and run the hands on exercises that accompany the PowerPoint slides. The scripts can support the demonstrations, although relying on them too heavily can overwhelm beginners. Most participants will follow the GUI more easily, so position the scripts as a reference rather than the primary workflow.
 
-To continue to Session 2, participants must either run the script [Session_1_Import_Data.m](Session_1_Import_Data.m)  or manually reproduce all import steps in the GUI, which is impractical for this dataset. The raw files require several technical adjustments that are not beginner friendly. For Session 1, a practical compromise is to have users import the FIF file in the GUI, select the EEG channels, explore the raw data briefly, then execute the import script to complete the required preprocessing. The second script, [Session_1_Preprocess_Data.m](Session_1_Preprocess_Data.m), can be reproduced entirely with the GUI if students prefer to work interactively.
+As an intructer, download and install the material. Then run all the scripts so the data is precomputed for participants (otherwise for session 3, participants must either run the script [Session_1_Import_Data.m](Session_1_Import_Data.m) and [Session_1_Preprocess_Data.m](Session_1_Preprocess_Data.m) or manually reproduce all import steps in the GUI, which is impractical for this dataset). The raw files require several technical adjustments that are not beginner friendly so it is better to have everything precomputed. From Session 3 onward, the scripts function mainly as optional examples. All core operations can be performed in the GUI. Instructors can choose whether to demonstrate scripts to illustrate reproducible workflows, but this should not be required for participants to progress.
 
-From Session 3 onward, the scripts function mainly as optional examples. All core operations can be performed in the GUI. Instructors can choose whether to demonstrate scripts to illustrate reproducible workflows, but this should not be required for participants to progress.
+Once you have confirmed that everything runs correctly, **zip the full course folder and copy it to a USB flash drive** for distribution. This allows students to begin immediately without dealing with data downloads, EEGLAB installation, or plugin setup.
 
 A few additional suggestions can improve the course experience. Clarify early that ICA may yield slightly different outcomes across computers and that this variability is normal. Finally, alternate between explanation and hands on exploration so participants stay engaged and do not fall behind. Have a teaching assistant present throughout the session so participants who get stuck can receive prompt one to one support without interrupting the flow of the course.

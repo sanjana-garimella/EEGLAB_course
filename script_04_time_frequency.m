@@ -1,31 +1,10 @@
-% Practical MEEG 2022
-% Wakeman & Henson Data analysis: Spectral and Time-Frequency Analsyis
-
-% Authors: Ramon Martinez-Cancino, Brain Products, 2022
-%          Romain Grandchamp, LPNC, 2025
-%          Arnaud Delorme, SCCN, 2022-2025
-%          Johanna Wagner, Zander Labs, 2022
+% Wakeman & Henson Data analysis: Spectral and time-frequency analysis.
 %
-% Copyright (C) 2022  Ramon Martinez-Cancino 
-%
-% This program is free software; you can redistribute it and/or modify
-% it under the terms of the GNU General Public License as published by
-% the Free Software Foundation; either version 2 of the License, or
-% (at your option) any later version.
-%
-% This program is distributed in the hope that it will be useful,
-% but WITHOUT ANY WARRANTY; without even the implied warranty of
-% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-% GNU General Public License for more details.
-%
-% You should have received a copy of the GNU General Public License
-% along with this program; if not, write to the Free Software
-% Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+% Authors: Arnaud Delorme, Ramon Martinez-Cancino, Johanna Wagner, Romain Grandchamp
 
 %%
 % Clearing all is recommended to avoid variable not being erased between calls 
 clear;                                      
-clear globals;
 
 % Path to data below. Using relative paths so no need to update.
 path2data = fullfile(pwd,'ds000117_pruned', 'derivatives', 'meg_derivatives', 'sub-01', 'ses-meg/', 'meg/'); % Path to data 

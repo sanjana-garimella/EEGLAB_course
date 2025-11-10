@@ -1,30 +1,9 @@
-% Practical MEEG 2022
-% Wakeman & Henson Data analysis: Ereprocess Data Session #1 
-
-% Authors: Ramon Martinez-Cancino, Brain Products, 2022
-%          Romain Grandchamp, LPNC, 2025
-%          Arnaud Delorme, SCCN, 2022-2025
-%          Johanna Wagner, Zander Labs, 2022
+% Wakeman & Henson Data analysis: Preprocess data.
 %
-% Copyright (C) 2022  Johanna Wagner
-%
-% This program is free software; you can redistribute it and/or modify
-% it under the terms of the GNU General Public License as published by
-% the Free Software Foundation; either version 2 of the License, or
-% (at your option) any later version.
-%
-% This program is distributed in the hope that it will be useful,
-% but WITHOUT ANY WARRANTY; without even the implied warranty of
-% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-% GNU General Public License for more details.
-%
-% You should have received a copy of the GNU General Public License
-% along with this program; if not, write to the Free Software
-% Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+% Authors: Arnaud Delorme, Ramon Martinez-Cancino, Johanna Wagner, Romain Grandchamp
 
 % Clearing all is recommended to avoid variable not being erased between calls 
 clear;                                      
-clear globals;
 
 % Path to data below. Using relative paths so no need to update.
 path2data = fullfile(pwd,'ds000117_pruned', 'derivatives', 'meg_derivatives', 'sub-01', 'ses-meg/', 'meg/'); % Path to data 
@@ -93,9 +72,12 @@ end
 %% automatically classify Independent Components using IC Label
 % use menu item Tools > Classify components using ICLabel > Label components
 % EEG only, MEG would be possible if ICLabel is retrained with MEG
-% components instead of EEG components
+% components instead of EEG components. Here we remove the component, but
+% when doing group analysis, it is better to do that at the STUDY level
 if ~contains(EEG.chanlocs(1).type, 'meg')
     EEG  = iclabel(EEG);
+    EEG = pop_icflag( EEG,[NaN NaN;0.9 1;0.9 1;NaN NaN;NaN NaN;NaN NaN;NaN NaN]);
+    EEG = pop_subcomp(EEG, [], 0); % remove pre-flagged bad components
 end
 
 %% Save dataset
