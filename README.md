@@ -294,7 +294,7 @@ The 23 slides give a hands on walkthrough of GLM based univariate statistics in 
 
 ## Exercices
 
-* **Session_1.1_overview.pptx** – Install EEGLAB, required plugins, and example datasets to prepare the analysis environment.
+* **Session_1.1_overview.pptx** – No Exercice
 * **Session_1.2_BIDS_and_NEMAR.pptx** – No Exercice
 * **Session_1.3_preprocessing.pptx** – Load raw data, apply cleaning, run ICA with ICLabel, and compare preprocessing choices.
 * **Session_2.1_ERP.pptx** – Create epochs, compute ERPs, visualize scalp maps and ERPimages, and examine ICA contributions.
