@@ -104,137 +104,137 @@ The course materials are organized into several sessions, each focusing on diffe
 
 The 18-slides presentation introduces EEGLAB, its history, capabilities, ecosystem, and practical setup steps. It also highlights preprocessing pipeline comparisons and key reference articles.
 
-• EEGLAB origins and development timeline
-• Usage statistics and ecosystem scale
-• Plugin manager and plugin count
-• MATLAB version and toolbox requirements
-• Advantages and limitations of MATLAB based EEGLAB
-• Operating system and compilation options
-• Automated preprocessing pipeline comparison
-• EEGLAB minor performance advantage explanation
-• Links to tutorial videos and test data
-• Key EEGLAB reference publications
-• Installation instructions and datasets
-• Git setup and cloning repositories
+* EEGLAB origins and development timeline
+* Usage statistics and ecosystem scale
+* Plugin manager and plugin count
+* MATLAB version and toolbox requirements
+* Advantages and limitations of MATLAB based EEGLAB
+* Operating system and compilation options
+* Automated preprocessing pipeline comparison
+* EEGLAB minor performance advantage explanation
+* Links to tutorial videos and test data
+* Key EEGLAB reference publications
+* Installation instructions and datasets
+* Git setup and cloning repositories
 
 ### Session_1.2_BIDS_and_NEMAR_data_repository.pptx
 
 The 31 slides present the principles of open and FAIR data, the structure and purpose of BIDS, and the components of BIDS-EEG. They also introduce NEMAR resources, available tools, and computational infrastructure. This presentation is optional; however, since the data is in BIDS format, it is beneficial to introduce the format.
 
-• Drivers of increased data sharing
-• FAIR data principles and requirements
-• BIDS purpose and scope
-• Components of a BIDS-EEG dataset
-• Examples of dataset organization
-• Supported raw EEG formats
-• Event and task description structure
-• Tools for BIDS import and export
-• NEMAR repository overview
-• Manuscripts describing NEMAR tools
-• Available GPU and CPU compute resources
-• EEGDash platform introduction 
+* Drivers of increased data sharing
+* FAIR data principles and requirements
+* BIDS purpose and scope
+* Components of a BIDS-EEG dataset
+* Examples of dataset organization
+* Supported raw EEG formats
+* Event and task description structure
+* Tools for BIDS import and export
+* NEMAR repository overview
+* Manuscripts describing NEMAR tools
+* Available GPU and CPU compute resources
+* EEGDash platform introduction 
 
 ### Session_1.3_preprocessing.pptx
 
 The 67 slides explain the full EEG preprocessing pipeline from raw data to analysis, including filtering, referencing, artifact handling, ICA, and evaluation of preprocessing choices. They also present evidence on how preprocessing steps influence statistical outcomes and describe practical EEGLAB workflows.
 
-• Reasons for preprocessing EEG data
-• Overview of the full preprocessing pipeline
-• BIDS support in major MEEG toolboxes
-• Event import and raw data inspection
-• Hands on data loading and visualization
-• HED tagging and NEMAR BIDS experiments
-• Channel location scanning and alignment
-• Influence of reference choice on ERPs
-• Effects of downsampling decisions
-• High pass filtering and ERP significance
-• Artifact types and identification methods
-• Bad channel detection via correlation
-• Line noise handling and interpolation
-• ASR performance and human rater comparison
-• Automated rejection methods and limitations
-• ICA decomposition and quality criteria
-• ICLabel classification and component removal
-• Clean_rawdata preprocessing workflow
-• Baseline effects on ERP significance
-• Comparison of automated preprocessing pipelines
+* Reasons for preprocessing EEG data
+* Overview of the full preprocessing pipeline
+* BIDS support in major MEEG toolboxes
+* Event import and raw data inspection
+* Hands on data loading and visualization
+* HED tagging and NEMAR BIDS experiments
+* Channel location scanning and alignment
+* Influence of reference choice on ERPs
+* Effects of downsampling decisions
+* High pass filtering and ERP significance
+* Artifact types and identification methods
+* Bad channel detection via correlation
+* Line noise handling and interpolation
+* ASR performance and human rater comparison
+* Automated rejection methods and limitations
+* ICA decomposition and quality criteria
+* ICLabel classification and component removal
+* Clean_rawdata preprocessing workflow
+* Baseline effects on ERP significance
+* Comparison of automated preprocessing pipelines
 
 ### Session_2.1_ERP.pptx
 
 The 48 slides introduce ERP analysis at the sensor level, covering conceptual foundations, visualization methods, preprocessing influences, and EEGLAB based workflows. They illustrate how ERPs arise, how to inspect them, and how ICA components contribute to ERP features.
 
-• Historical context and ERP foundations
-• ERP experiment structure and data flow
-• Examples of ERP morphology
-• ERP images and trial sorting
-• Phase synchronization as ERP mechanism
-• Time, frequency, and time frequency approaches
-• Epoch extraction and baseline handling
-• Artifact rejection and ICA influence on ERPs
-• Scalp distribution and topographic visualization
-• Three dimensional channel registration and warping
-• Component level ERP envelopes and contributions
-• Difference ERPs across conditions
-• Hands on ERP analysis steps
+* Historical context and ERP foundations
+* ERP experiment structure and data flow
+* Examples of ERP morphology
+* ERP images and trial sorting
+* Phase synchronization as ERP mechanism
+* Time, frequency, and time frequency approaches
+* Epoch extraction and baseline handling
+* Artifact rejection and ICA influence on ERPs
+* Scalp distribution and topographic visualization
+* Three dimensional channel registration and warping
+* Component level ERP envelopes and contributions
+* Difference ERPs across conditions
+* Hands on ERP analysis steps
 
 ### Session_2.2_TimeFrequencyAnalysis.pptx
 
 The 55 slides present the theory and practice of time frequency analysis for biophysical signals, from Fourier methods to wavelets. They explain key trade offs, practical spectral estimation techniques, and EEGLAB based ERSP and ITC analysis.
 
-• Biophysics of EEG and brain oscillations
-• Stationary versus non stationary signals
-• Fourier theorem and frequency decomposition
-• Discrete Fourier Transform and FFT basics
-• Zero padding and spectral interpolation limits
-• Tapering, windowing, and Gibbs phenomenon
-• Window trade offs and Welch spectral estimation
-• Trial averaging and variance reduction in spectra
-• Spectrograms and ERSP for non stationary activity
-• Absolute versus relative power and normalization
-• Time frequency uncertainty and Heisenberg limit
-• Wavelet construction and Morlet convolution
-• Time frequency trade off in wavelet families
-• Comparing FFT based and wavelet approaches
-• Phase resetting, induced versus evoked responses
-• Inter trial coherence and phase visualization
-• IC level ERSP and ITC plots in EEGLAB
-• Hands on steps for channel time frequency analysis
+* Biophysics of EEG and brain oscillations
+* Stationary versus non stationary signals
+* Fourier theorem and frequency decomposition
+* Discrete Fourier Transform and FFT basics
+* Zero padding and spectral interpolation limits
+* Tapering, windowing, and Gibbs phenomenon
+* Window trade offs and Welch spectral estimation
+* Trial averaging and variance reduction in spectra
+* Spectrograms and ERSP for non stationary activity
+* Absolute versus relative power and normalization
+* Time frequency uncertainty and Heisenberg limit
+* Wavelet construction and Morlet convolution
+* Time frequency trade off in wavelet families
+* Comparing FFT based and wavelet approaches
+* Phase resetting, induced versus evoked responses
+* Inter trial coherence and phase visualization
+* IC level ERSP and ITC plots in EEGLAB
+* Hands on steps for channel time frequency analysis
 
 ### Session_3.1_Source_Localization_ICA.pptx
 
 The 53 slides explain how ICA contributes to source estimation, covering the forward and inverse problems, ICA theory, and practical DIPFIT based localization. They describe how IC scalp projections relate to dipolar sources and how to fit anatomical models in EEGLAB.
 
-• Forward and inverse modeling principles
-• Ill posed nature of EEG source reconstruction
-• Dipole and distributed inverse methods
-• Role of ICA in separating cortical sources
-• ICA versus PCA and key ICA algorithms
-• Applications of ICA to biomedical data
-• Two step workflow for IC source localization
-• Dipole fitting and residual variance evaluation
-• Co registration of electrodes and head models
-• BEM models and transformation parameters
-• Autofit options and dual dipole fitting
-• Distributed localization with eLORETA and beamforming
-• Leadfield computation and component modeling
-• Hands on DIPFIT localization procedures
+* Forward and inverse modeling principles
+* Ill posed nature of EEG source reconstruction
+* Dipole and distributed inverse methods
+* Role of ICA in separating cortical sources
+* ICA versus PCA and key ICA algorithms
+* Applications of ICA to biomedical data
+* Two step workflow for IC source localization
+* Dipole fitting and residual variance evaluation
+* Co registration of electrodes and head models
+* BEM models and transformation parameters
+* Autofit options and dual dipole fitting
+* Distributed localization with eLORETA and beamforming
+* Leadfield computation and component modeling
+* Hands on DIPFIT localization procedures
 
 ### Session_3.2_connectivity.pptx
 
 The 54 slides introduce dynamic brain connectivity analysis in EEG, covering VAR modeling, Granger causality, non stationarity handling, ROI based source space connectivity, and SIFT workflows. They explain key pitfalls, model selection principles, and visualization of causal interactions, with an accompanying brain movie illustrating connectivity dynamics.
 
-• Goals and challenges of EEG connectivity analysis
-• Spurious connectivity and common input problems
-• Granger causality principles and VAR modeling
-• Model order selection and information criteria
-• Handling non stationarity with sliding windows
-• Connectivity during visually guided movement
-• ICA based source space analysis and ROI extraction
-• SIFT workflow and causal network reconstruction
-• Influence of atlas choice and number of nodes
-• Coherence and phase relationships between regions
-• Channel versus source space considerations
-• Hands on steps for ROI connectivity computation
+* Goals and challenges of EEG connectivity analysis
+* Spurious connectivity and common input problems
+* Granger causality principles and VAR modeling
+* Model order selection and information criteria
+* Handling non stationarity with sliding windows
+* Connectivity during visually guided movement
+* ICA based source space analysis and ROI extraction
+* SIFT workflow and causal network reconstruction
+* Influence of atlas choice and number of nodes
+* Coherence and phase relationships between regions
+* Channel versus source space considerations
+* Hands on steps for ROI connectivity computation
 
 (see also the associated brain movie: Session_3.2_connectivity_brain_movie.mov)
 
@@ -242,53 +242,53 @@ The 54 slides introduce dynamic brain connectivity analysis in EEG, covering VAR
 
 The 51 slides describe how to cluster ICA components across subjects in EEGLAB, from STUDY setup and measure precomputation to K-means clustering and interpretation. They also show how clustering validates ICA solutions and helps identify functionally meaningful source groups.
 
-• Steps of IC clustering workflow
-• STUDY loading and dataset information editing
-• Residual variance computation and IC selection
-• Precomputation of spectra, ERSP, dipoles, and moments
-• PCA based preclustering and singular value selection
-• K means clustering in feature space of IC measures
-• Choice of measures based on scientific question
-• Examples of within subject and across subject clusters
-• Validation of ICA dipolarity and algorithm reliability
-• Visualization and manual editing of IC clusters
-• Identification of frontal midline theta and occipital alpha clusters
-• Hands on protocol for clustering and outlier removal
+* Steps of IC clustering workflow
+* STUDY loading and dataset information editing
+* Residual variance computation and IC selection
+* Precomputation of spectra, ERSP, dipoles, and moments
+* PCA based preclustering and singular value selection
+* K means clustering in feature space of IC measures
+* Choice of measures based on scientific question
+* Examples of within subject and across subject clusters
+* Validation of ICA dipolarity and algorithm reliability
+* Visualization and manual editing of IC clusters
+* Identification of frontal midline theta and occipital alpha clusters
+* Hands on protocol for clustering and outlier removal
 
 ### Session_5.1_univariate_statistics.pptx
 
 The 72 slides present robust statistical methods for EEG, covering parametric and nonparametric inference, bootstrap and permutation strategies, multiple comparison corrections, and GLM based analysis at single subject and group levels. They emphasize robust estimation, visualization, and principled control of false positives.
 
-• Parametric and nonparametric hypothesis testing
-• Power, effect size, and sample size considerations
-• Robust central tendency and trimmed means
-• Bootstrap confidence intervals and inference
-• Bootstrap versus permutation logic
-• Corrections for multiple comparisons
-• Bonferroni, Holm, FDR, cluster, and TFCE methods
-• Cluster based permutation for EEG time series
-• Strengths and limitations of correction strategies
-• Introduction to GLMs for EEG data
-• Design matrices and modeling factors
-• Level one and level two GLM analysis
-• Mixed effects modeling and random effects
-• Software implementations in MATLAB, Python, and R
+* Parametric and nonparametric hypothesis testing
+* Power, effect size, and sample size considerations
+* Robust central tendency and trimmed means
+* Bootstrap confidence intervals and inference
+* Bootstrap versus permutation logic
+* Corrections for multiple comparisons
+* Bonferroni, Holm, FDR, cluster, and TFCE methods
+* Cluster based permutation for EEG time series
+* Strengths and limitations of correction strategies
+* Introduction to GLMs for EEG data
+* Design matrices and modeling factors
+* Level one and level two GLM analysis
+* Mixed effects modeling and random effects
+* Software implementations in MATLAB, Python, and R
 
 ### Session_5.2_univariate_statistics_practicum.pptx
 
 The 23 slides give a hands on walkthrough of GLM based univariate statistics in EEGLAB/LIMO, using the ds002718 face dataset. They focus on STUDY design setup, single trial modeling, and running first and second level analyses with appropriate corrections.
 
-• Overview of the ds002718 face repetition dataset
-• Level one GLM and beta significance estimation
-• Experimental factors and condition structure
-• BIDS import, cleaning, ICA, and epoching steps
-• STUDY creation and design specification
-• Precomputation of single trial measures
-• Standard EEGLAB statistics and corrections
-• Exercises on ERP comparison across conditions
-• LIMO plugin based model estimation
-• Group level ANOVA and contrast interpretation
-• Practical workflow for GLM based EEG statistics
+* Overview of the ds002718 face repetition dataset
+* Level one GLM and beta significance estimation
+* Experimental factors and condition structure
+* BIDS import, cleaning, ICA, and epoching steps
+* STUDY creation and design specification
+* Precomputation of single trial measures
+* Standard EEGLAB statistics and corrections
+* Exercises on ERP comparison across conditions
+* LIMO plugin based model estimation
+* Group level ANOVA and contrast interpretation
+* Practical workflow for GLM based EEG statistics
 
 (see also the associated movies referenced in the presentation: Session_5.2_movie_1.mp4 and Session_5.2_movie_2.mp4; distributed separately because of GitHub 100mb limit)
 
