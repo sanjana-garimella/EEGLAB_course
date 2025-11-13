@@ -329,3 +329,8 @@ As an intructer, we advise that you download and install the material. Then run 
 Once you have confirmed that everything runs correctly, **zip the full course folder and copy it to a USB flash drive** for distribution. This allows students to begin immediately without dealing with data downloads, EEGLAB installation, or plugin setup. We also advise that you include EEGLAB and its plugin (either as a zip archive or uncompressed) on the flash drive so all students have the latest version of EEGLAB.
 
 A few additional tips to improve the course experience: Clarify early that ICA may yield slightly different outcomes across computers and that this variability is normal. Finally, alternate between explanation and hands on exploration so participants stay engaged and do not fall behind. Have a teaching assistant present throughout the session so participants who get stuck can receive prompt one to one support without interrupting the flow of the course.
+
+## Contributors
+
+* Arnaud Delorme, creator of this course
+* Other contributors include Scott Makeig, Romain Grandchamp, Johanna Wagner, Ramon Martinez-Cancino, Tim Mullen, John Iversen, and Cyril Pernet.
