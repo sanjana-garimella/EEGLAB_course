@@ -1,4 +1,4 @@
-# Create Your Own EEG Course
+# Complete Course Materials
 
 This [repository](https://github.com/sccn/EEGLAB_course) contains materials for EEGLAB course sessions. This course was originally conducted at the [practical MEEG 2025 workshop](https://cuttingeeg.org/practicalmeeg2025/). Although this course is centered on EEGLAB, 90% of the material is not EEGLAB-specific.
 
